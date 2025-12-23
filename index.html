@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Ano de namoro</title>
+    <style>
+        /* --- ESTILOS GERAIS --- */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #ffcccc;
+            --text: #4a4a4a;
+            --bg: #fff0f3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* --- HERO SECTION (O TOPO) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), 
+                        url('https://source.unsplash.com/random/1920x1080/?couple,love'); /* Imagem de fundo genérica */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* --- CONTADOR --- */
+        .timer-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .time-box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
+            min-width: 100px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .time-box small {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* --- TIMELINE --- */
+        .timeline-section {
+            padding: 80px 20px;
+            background: white;
+            text-align: center;
+        }
+
+        .timeline-title {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 50px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Linha vertical */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .container::after {
+            content: '❤️';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -13px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left { left: 0; }
+        .right { left: 50%; }
+        .left::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; right: 30px; border: medium solid white; border-width: 10px 0 10px 10px; border-color: transparent transparent transparent #f9f9f9; }
+        .right::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; left: 30px; border: medium solid white; border-width: 10px 10px 10px 0; border-color: transparent #f9f9f9 transparent transparent; }
+        .right::after { left: -13px; }
+
+        .content {
+            padding: 20px 30px;
+            background-color: #f9f9f9;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .content:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- GALERIA POLAROID --- */
+        .gallery-section {
+            padding: 80px 20px;
+            background: var(--bg);
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 10px 10px 30px 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            transition: all 0.3s ease;
+            width: 250px;
+        }
+
+        .polaroid:nth-child(even) { transform: rotate(3deg); }
+        .polaroid:hover { transform: rotate(0deg) scale(1.1); z-index: 10; }
+
+        /* Substitua os links do src pelas suas fotos */
+        .polaroid img { width: 100%; height: auto; border-radius: 2px; }
+        .caption { margin-top: 10px; font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: #555; }
+
+        /* --- BOTÃO DE MOTIVOS --- */
+        .love-reasons {
+            padding: 100px 20px;
+            text-align: center;
+            background: white;
+        }
+
+        .btn-love {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-love:hover { background: #ff4757; }
+
+        #reason-display {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            font-family: 'Dancing Script', cursive;
+            min-height: 50px;
+            color: var(--primary);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        /* --- ANIMAÇÕES --- */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Ajustes Mobile */
+        @media screen and (max-width: 600px) {
+            .timeline::after { left: 31px; }
+            .container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .container::before { left: 60px; border: medium solid white; border-width: 10px 10px 10px 0; border-color: transparent white transparent transparent; }
+            .left::after, .right::after { left: 18px; }
+            .right { left: 0%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>Rafaella ❤️ Polar</h1>
+        <p>1 ano de risadas e muito amor e umpoquinho de riava:)</p>
+        
+        <div class="timer-container">
+            <div class="time-box"><span id="days">0</span><small>Dias</small></div>
+            <div class="time-box"><span id="hours">0</span><small>Horas</small></div>
+            <div class="time-box"><span id="minutes">0</span><small>Minutos</small></div>
+            <div class="time-box"><span id="seconds">0</span><small>Segundos</small></div>
+        </div>
+    </div>
+
+    <div class="timeline-section">
+        <h2 class="timeline-title">Nossa História</h2>
+        <div class="timeline">
+            
+            <div class="container left">
+                <div class="content">
+                    <h3>O Início</h3>
+                    <p>Onde tudo começou. Aquele dia em que nois se encontramos em um jogo memizada, mais foi onde encontrei algo mais precioso do que tudo nesse mundo</p>
+                </div>
+            </div>
+            
+            <div class="container right">
+                <div class="content">
+                    <h3>Primeiro Beijo</h3>
+                    <p>Ainda n tivemos, mais espero que nois tenha, eu desejo mui te abraçar com força, e te beija.</p>
+                </div>
+            </div>
+
+            <div class="container left">
+                <div class="content">
+                    <h3>Momentos de raiva</h3>
+                    <p>se chato vem junto com o pacote então, ta lascada beby</p>
+                </div>
+            </div>
+
+            <div class="container right">
+                <div class="content">
+                    <h3>1 Ano Juntos</h3>
+                    <p>E hoje celebramos nosso primeiro de muitos anos, assim espero, quero ter 2,3,4,5,6,7,8,9,10... muitos anos de namoro ainda com vc ate que a morte nos separe</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="gallery-section">
+        <h2 class="timeline-title">Rafakai :) kaio e Rafaella, casal perfeito na minha opiniao</h2>
+        <div class="gallery-grid">
+            
+            <div class="polaroid">
+                <img src="https://i.imgur.com/uhWwoHn.jpeg" alt="Foto 1">
+                <div class="caption">bixu fei</div>
+            </div>
+
+            <div class="polaroid">
+                <img src="https://i.imgur.com/0CjultT.jpeg" alt="Foto 2">
+                <div class="caption">A menina com o sorriso mais lindo do mundo, que eu ja vi</div>
+            </div>
+
+            <div class="polaroid">
+                <img src="https://i.imgur.com/YUWvzuD.jpeg" alt="Foto 3">
+                <div class="caption">Ums dos momentos mais incriveis especiais que tebho com vc</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="love-reasons">
+        <h2 class="timeline-title">Por que eu te amo?</h2>
+        <button class="btn-love" onclick="showReason()">Clique para saber</button>
+        <div id="reason-display"></div>
+    </div>
+
+    <footer>
+        <p style="text-align: center; padding: 20px; color: #888;">n e nada muito oh meu deus mais melhor que eu n da nada </p>
+    </footer>
+
+    <script>
+        // --- 1. CONFIGURAÇÃO DA DATA DE INÍCIO ---
+        // EDITE AQUI: Ano, Mês (0-11), Dia
+        // Exemplo: 25 de Outubro de 2023 seria (2023, 9, 25) -> Mês é indexado em 0!
+        const startDate = new Date( 2024, 11, 23); // Coloque a data do início do namoro aqui
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+
+        // --- 2. GERADOR DE MOTIVOS ---
+        const reasons = [
+            "seu sorriso lindo",
+            "seu jeitinho que eu amo",
+            "seu ciumes gigantesco por mim",
+            "sua beleza, eu te acho a menina mais linda do mundo, tudo vc em lundo ssu corpo seu sorriso seu rosto, seu cabelo, simplemente tudo, e seus...e sua... sao perfeitos(a)",
+            "Pelo os momrntos invcriveis que passei com vc, qje me fez me apaxionar cegamente por vc",
+            "Simplemente por vc ser vc mesma, vc e tipo... num sei... ainda n existe uma palavra pra te descrever o quanto vc e incrivel e unica que eu amo nesse mundo inteiro, n sou um otimo namorado, mais to tentando... so meio conplicado, então te amo muito e feliz 1 ano de anmoro minha anmorada dos meus sonhos"
+            // ADICIONE MAIS FRASES AQUI SEPARADAS POR VÍRGULA E ENTRE ASPAS
+        ];
+
+        function showReason() {
+            const display = document.getElementById('reason-display');
+            const randomIndex = Math.floor(Math.random() * reasons.length);
+            
+            display.style.opacity = 0; // Fade out
+            
+            setTimeout(() => {
+                display.innerText = reasons[randomIndex];
+                display.style.opacity = 1; // Fade in
+            }, 300);
+        }
+    </script>
+</body>
+</html>
